@@ -1,0 +1,27 @@
+<section class="offre-fav">
+  <div class="offre-container">
+    <h1>les voyages que vous aimez</h1>
+    <p>profitez avec notre service des voyages dans diffents villes du maroc</p>
+  </div>
+  <div class="container" *ngIf="offres.length;else isEmpty">
+  <div class="offre-card-container">
+    <div class="offre-card" *ngFor="let offre of offres">
+      <img src="{{offre?.img}}" alt="">
+      <div class="offre-card-content">
+        <h2>{{offre?.city?.name}}</h2>
+        <p>{{offre?.city?.adresse}}</p>
+        <div class="offre-card-star">
+          <i class="fa fa-star" *ngFor="let rating of offre.rating"></i>
+        </div>
+        <p class="mt-4">{{offre?.miniDesc}}</p>
+      </div>
+    </div>
+  </div>
+  </div>
+  <ng-template #isEmpty>
+    <div class="isEmpty_container">
+      <img src="{{globals.PAGES_OFFRE_IMG_ERROR_MSG}}" alt="">
+      <p>{{globals.PAGES_OFFRE_FAV_ERROR_MSG}}</p>
+    </div>
+  </ng-template>
+</section>

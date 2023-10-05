@@ -1,0 +1,264 @@
+<section class="souscription-section">
+
+  <app-custom-alert [color]="Alert.color" [messageText]="Alert.messageText" [messageBtn]="Alert.messageBtn" [status]="Alert.imgStatus"></app-custom-alert>
+
+  <div class="custom_container">
+    <div class="soucription__container">
+      <div class="soucription__content">
+        <h1>{{ globals.PAGES_SOUSCRIPTIION_TITLE }}</h1>
+        <form
+          #formSubscription="ngForm"
+          name="formSubscription"
+          (ngSubmit)="formSubscription.form.valid && onSubmitSubscriptionForm()"
+          style="width: 100%"
+        >
+          <div class="row">
+            <div class="col-md-6 mb-4">
+              <input
+                type="text"
+                name="firstName"
+                #firstName="ngModel"
+                class="form-control"
+                placeholder="✍️ entrez votre nom :"
+                [(ngModel)]="subscription.firstName"
+                [ngClass]="{
+                  'is-invalid': formSubscription.submitted && firstName.invalid
+                }"
+                required
+              />
+              <div
+                *ngIf="formSubscription.submitted && firstName.invalid"
+                class="invalid-feedback"
+              >
+                <div *ngIf="firstName.errors.required">champ obligatoire</div>
+              </div>
+            </div>
+            <div class="col-md-6 mb-4">
+              <input
+                type="text"
+                name="lastName"
+                #lastName="ngModel"
+                class="form-control"
+                placeholder="✍️ entrez votre prenom :"
+                [(ngModel)]="subscription.lastName"
+                [ngClass]="{
+                  'is-invalid': formSubscription.submitted && lastName.invalid
+                }"
+                required
+              />
+              <div
+                *ngIf="formSubscription.submitted && lastName.invalid"
+                class="invalid-feedback"
+              >
+                <div *ngIf="lastName.errors.required">champ obligatoire</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6 mb-4">
+              <input
+                type="text"
+                name="cin"
+                #cin="ngModel"
+                class="form-control"
+                placeholder="✒️ entrez votre CIN :"
+                [(ngModel)]="subscription.cin"
+                pattern="^[A-z]{2}[0-9]{6}$"
+                [ngClass]="{
+                  'is-invalid': formSubscription.submitted && cin.invalid
+                }"
+                required
+              />
+              <div
+                *ngIf="formSubscription.submitted && cin.invalid"
+                class="invalid-feedback"
+              >
+                <div *ngIf="cin.errors.required">champ obligatoire</div>
+                <div *ngIf="cin.errors.pattern">cin invalide</div>
+              </div>
+            </div>
+            <div class="col-md-6 mb-4">
+              <input
+                type="text"
+                name="phone"
+                #phone="ngModel"
+                class="form-control"
+                placeholder="📞 entrez votre telephone :"
+                [(ngModel)]="subscription.phone"
+                pattern="^(?:(?:(?:\+|00)212[\s]?(?:[\s]?\(0\)[\s]?)?)|0){1}(?:5[\s.-]?[2-3]|6[\s.-]?[13-9]){1}[0-9]{1}(?:[\s.-]?\d{2}){3}$"
+                [ngClass]="{
+                  'is-invalid': formSubscription.submitted && phone.invalid
+                }"
+                required
+              />
+              <div
+                *ngIf="formSubscription.submitted && phone.invalid"
+                class="invalid-feedback"
+              >
+                <div *ngIf="phone.errors.required">champ obligatoire</div>
+                <div *ngIf="phone.errors.pattern">
+                  numero téléphone invalide
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12 mb-4">
+              <select
+                name="type"
+                class="form-control"
+                #status
+                (change)="onChangeStatus(status.value)"
+                [ngClass]="{ 'is-invalid': formSubscription.submitted }"
+                required
+              >
+                <option value="NAN">💡 choisir votre status</option>
+                <option value="P">particulier</option>
+                <option value="E">entreprise</option>
+              </select>
+              <div
+                *ngIf="formSubscription.submitted"
+                class="invalid-feedback"
+              ></div>
+            </div>
+          </div>
+
+          <div class="row" *ngIf="subscription.status === 'E'">
+            <div class="col-md-6">
+              <input
+                type="text"
+                name="entreprise"
+                #entreprise="ngModel"
+                class="form-control"
+                placeholder="🏢 entrez le nom d'entreprise:"
+                [(ngModel)]="subscription.entreprise.name"
+                [ngClass]="{
+                  'is-invalid': formSubscription.submitted && entreprise.invalid
+                }"
+                required/>
+              <div
+                *ngIf="formSubscription.submitted && entreprise.invalid"
+                class="invalid-feedback"
+              >
+                <div *ngIf="entreprise.errors.required">champ obligatoire</div>
+              </div>
+            </div>
+            <div class="col-md-6 mb-4">
+              <select
+                name="size"
+                class="form-control"
+                #size
+                (change)="onChangeSize(size.value)"
+                required>
+                <option value="NAN">🏢 choisir type entreprise</option>
+                <option value="G">Grand</option>
+                <option value="M">Moyenne</option>
+                <option value="P">Petite</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12 mb-4">
+              <input
+                type="email"
+                name="email"
+                #email="ngModel"
+                class="form-control"
+                placeholder="📧 entrez votre email :"
+                [(ngModel)]="subscription.email"
+                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                [ngClass]="{
+                  'is-invalid': formSubscription.submitted && email.invalid
+                }"
+                required
+              />
+              <div
+                *ngIf="formSubscription.submitted && email.invalid"
+                class="invalid-feedback"
+              >
+                <div *ngIf="email.errors.required">champ obligatoire</div>
+                <div *ngIf="email.errors.pattern">email invalide</div>
+              </div>
+            </div>
+
+            <div class="col-md-12 mb-4">
+              <input
+                type="password"
+                class="form-control"
+                name="password"
+                #password="ngModel"
+                minlength="8"
+                maxlength="10"
+                [(ngModel)]="subscription.password"
+                placeholder="🔐 enter votre password.."
+                [ngClass]="{
+                  'is-invalid': formSubscription.submitted && password.invalid
+                }"
+                required
+              />
+              <div
+                *ngIf="formSubscription.submitted && password.invalid"
+                class="invalid-feedback"
+              >
+                <div *ngIf="password.errors.required">champ obligatoire</div>
+                <div *ngIf="password.errors.minlength">
+                  au moins 8 caractères
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12 mb-4">
+              <input
+                type="text"
+                class="form__captcha"
+                name="captchaGenerated"
+                [(ngModel)]="captchaGenerated"
+                disabled
+              />
+              <button
+                type="button"
+                class="form__captcha-button"
+                (click)="onChangeCaptcha()"
+              >
+                <i class="fa fa-refresh"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <input
+                type="text"
+                class="form-control"
+                name="captcha"
+                [(ngModel)]="captcha"
+                placeholder="📟 enter captcha.."
+                required
+              />
+            </div>
+          </div>
+
+          <div class="soucription_btn_contanier">
+            <button
+              type="submit"
+              class="btn btn-outline-success btn-block soucription_btn"
+            >
+              inscription
+            </button>
+          </div>
+
+          <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+        </form>
+      </div>
+      <img
+        src="{{ globals.PAGES_SOUSCRIPTIION_IMG }}"
+        class="soucription__img"
+      />
+    </div>
+  </div>
+</section>

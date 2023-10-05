@@ -1,0 +1,160 @@
+<div class="modal">
+  <div class="modal-content">
+    <div class="close" (click)="onClickCloseModal()">&times;</div>
+    <div class="modal-container">
+      <h3>🏝️ Reservez Votre Voyage</h3>
+
+      <div class="container">
+        <ul class="navigation__group">
+          <li class="navigation__item">
+            <span 
+              [ngClass]="[firstStep  === false ? 'navigation__item-link' : 'navigation__item-link-active']"
+            ><i class="fa fa-paper-plane"></i>&nbsp;remplir votre demande</span>
+          </li>
+          <li class="navigation__item">
+            <span 
+              [ngClass]="[firstStep  === true ? 'navigation__item-link' : 'navigation__item-link-active']"
+            ><i class="fa fa-paper-plane-o"></i>&nbsp;finaliser votre demande</span>
+          </li>
+        </ul>
+      </div>
+  
+      <div *ngIf="firstStep  === true">
+      <form name="formFristStep" (ngSubmit)="formFristStep.form.valid && onSubmitFirstForm()" #formFristStep="ngForm">
+        
+        <div class="form-group">
+          <label class="custom-modal_label">🏖️ vous souhaitez voyager :</label>
+          <div class="custom-modal_radio-container">
+            <div class="custom-modal_radio-content" *ngFor="let type of typeTravels; let index = index">
+              <input type="radio" id="{{type.id}}" name="typeTravels" value="{{type.name}}" (click)="onClickSelectTypeTravel(type.name)">
+                <label for="{{type.id}}">
+                <i class="fa fa-{{ type.icon }}"></i>&nbsp;{{type.name}}
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <select
+            name="destination"
+            class="form-control"
+            #city
+            (change)="onChangeCity(city.value)"
+            required>
+            <option value="NAN">🏖️ Choisissez votre destination :</option>
+            <option *ngFor="let city of cities" [value]="city.name">
+              {{ city.name }}
+            </option>
+          </select>
+        </div>
+        <div class="form-group">
+          <select
+            name="quantity"
+            class="form-control"
+            #quantity
+            (change)="onChangeQte(quantity.value)"
+            required>
+            <option value="0">🧍 Combien de personne serez-vous :</option>
+            <option *ngFor="let quantity of quantitys" [value]="quantity.nombre">
+              {{ quantity.nombre }}
+            </option>
+          </select>
+        </div>
+        <div class="form-group mt-4">
+          <label class="custom-modal_label">🏖️ quel type de voyage désirez-vous :</label>
+          <div class="custom-modal_button-container">
+            <button class="button-custom-modal" type="button"
+                    *ngFor="let category of categoryTravels; let index = index"
+                    (click)="onClickSelectCategoryTravel(category.name,index)"
+                    [class.button-custom-starndard]="index == selectedBtn" required>
+              <i class="fa fa-{{ category.icon }}"></i><span>{{ category.name }}</span>
+            </button>
+          </div>
+        </div>
+      
+      <div class="container d-flex justify-content-center">
+        <button type="submit" *ngIf="nextStep" class="button_next-step">suivant</button>
+      </div>
+
+      </form>
+      </div>
+      
+      <div *ngIf="secondStep === true">
+        <form name="formSecondStep" (ngSubmit)="formSecondStep.form.valid && onSubmitSecondStep()" #formSecondStep="ngForm">
+          <div class="row">
+            <div class="col-md-6">
+              <input type="email" class="form-control form_sm"
+              id="email" placeholder="📧 entrez votre email..."
+              name="email" #email="ngModel"
+              [(ngModel)]="reservation.email"
+              [ngClass]="{ 'is-invalid': formSecondStep.submitted && formSecondStep.invalid }" required>
+              <div *ngIf="formSecondStep.submitted && email.invalid" class="invalid-feedback">
+                <div *ngIf="email.errors.required">⚠️ champs obligatoire</div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <input type="text" class="form-control"
+                    id="phone" placeholder="📞 entrez votre telephone..."
+                    name="phone" #phone="ngModel"                    
+                    [(ngModel)]="reservation.phone"
+                    [ngClass]="{ 'is-invalid': formSecondStep.submitted && formSecondStep.invalid }" required>
+                    <div *ngIf="formSecondStep.submitted && phone.invalid" class="invalid-feedback">
+                      <div *ngIf="phone.errors.required">⚠️ champs obligatoire</div>
+                    </div>
+            </div>
+          </div>
+            <div class="row mt-4">
+                <div class="form-group col-md-6">
+                  <input type="date" name="startDate" class="form-control" [(ngModel)]="reservation.startDate"
+                          #startDate="ngModel"
+                          min="{{reservation.startDate}}"
+                          [ngClass]="{ 'is-invalid': formSecondStep.submitted && startDate.invalid }" required pattern="^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$">
+                        <div *ngIf="formSecondStep.submitted && startDate.invalid" class="invalid-feedback">
+                            <div *ngIf="startDate.errors.required">Date of Birth is required</div>
+                        </div>
+                </div>
+                <div class="form-group col-md-6">
+                  <input type="date" name="startDate" class="form-control" [(ngModel)]="reservation.endDate"
+                          #endDate="ngModel"
+                          min="{{reservation.startDate}}"
+                          max="{{reservation.endDate}}"
+                          [ngClass]="{ 'is-invalid': formSecondStep.submitted && endDate.invalid }" required pattern="^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$">
+                        <div *ngIf="formSecondStep.submitted && endDate.invalid" class="invalid-feedback">
+                            <div *ngIf="endDate.errors.required">Date of Birth is required</div>
+                        </div>
+                </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <select
+                  name="budget"
+                  class="form-control"
+                  #budget
+                  (change)="onChangeBudget(budget.value)"
+                  required>
+                  <option value="">💰 Choisissez votre budget :</option>
+                  <option *ngFor="let budget of budgetTravels" [value]="budget.name">
+                    {{ budget.name }}
+                  </option>
+                </select>
+              </div>
+              <div class="col-md-12 mt-4">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" (click)="onCheckedDescription()">
+                  <label class="form-check-label">
+                    ❓ d’autres spécificités ?
+                  </label>
+                </div>
+                <textarea  class="form-texterea" maxlength = "50" *ngIf="showDescription"
+                          placeholder="📝 quelque chose a r'ajouter..."
+                          name="description" #description="ngModel"
+                          [(ngModel)]="reservation.description">
+                </textarea>
+              </div>
+            </div>
+          <div class="text-center">
+            <button class="button_next-step">confirmer ma reservation</button>
+          </div>
+        </form>
+       </div>
+  </div>
+</div>

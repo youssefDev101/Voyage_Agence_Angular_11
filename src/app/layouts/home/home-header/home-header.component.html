@@ -1,0 +1,21 @@
+<section class="home_section">
+  <div class="container">
+    <div class="home_container">
+      <div class="home_content">
+        <h1>👋 Bienvennue Chez <span>{{globals.HOME_TITLE}}</span></h1>
+        <div class="home_content_div" [innerHTML]="globals.HOME_PARAGRAPH"></div>
+        <div class="home_content_btn">
+          <button class="btn-home-primary">{{globals.HOME_BTN_FIRST}}</button>
+          <button class="btn-home-secondary" (click)="showCustomModal = true">{{globals.HOME_BTN_SECOUND}}</button>
+        </div>
+      </div>
+      <div class="home_content_img">
+        <img src="{{globals.IMG_LOGO_HOME}}" alt="travling-in-weekend">
+      </div>
+    </div>
+  </div>
+</section>
+
+<div *ngIf="showCustomModal === true">
+<app-main-modal (closeModalEvent)="onHideCustomModal($event)"></app-main-modal>
+</div>

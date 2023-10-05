@@ -1,0 +1,80 @@
+<div class="modal" *ngIf="showModal">
+  <div class="modal-content">
+    <div class="close" (click)="onCloseModal()">&times;</div>
+    <div class="modal-container">
+      <h3>{{globals.CUSTOM_MODAL_TITLE}}</h3>
+      <p>{{globals.CUSTOM_MODAL_SUB_TITLE}}</p>
+    </div>
+    <br>
+    <div class="container">
+      <form #formPartener="ngForm" name="formPartener" (ngSubmit)="formPartener.form.valid && onSubmitPartenerForm()" >
+        <div class="row">
+          <div class="col-md-6 mb-4">
+            <input type="text" name="firstName" #firstName="ngModel"
+            class="form-control" placeholder="✍️ entrez votre nom :"
+            [(ngModel)]="partener.firstName"
+            [ngClass]="{ 'is-invalid': formPartener.submitted && firstName.invalid }" required>
+            <div *ngIf="formPartener.submitted && firstName.invalid" class="invalid-feedback">
+              <div *ngIf="firstName.errors.required">champ obligatoire</div>
+          </div>
+          </div>
+          <div class="col-md-6 mb-4">
+            <input type="text" name="lastName" id="lastName" #lastName="ngModel"
+            class="form-control" placeholder="✍️ entrez votre prenom :"
+            [(ngModel)]="partener.lastName"
+            [ngClass]="{ 'is-invalid': formPartener.submitted && lastName.invalid }" required>
+            <div *ngIf="formPartener.submitted && lastName.invalid" class="invalid-feedback">
+              <div *ngIf="lastName.errors.required">champ obligatoire</div>
+          </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 mb-4">
+            <input type="email" name="email" #email="ngModel"
+            class="form-control" placeholder="📧 entrez votre email :"
+            [(ngModel)]="partener.email"
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+            [ngClass]="{ 'is-invalid': formPartener.submitted && email.invalid }" required>
+            <div *ngIf="formPartener.submitted && email.invalid" class="invalid-feedback">
+              <div *ngIf="email.errors.required">champ obligatoire</div>
+          </div>
+          </div>
+          <div class="col-md-6">
+            <input type="text" name="phone" #phone="ngModel"
+            class="form-control" placeholder="📞 entrez votre telephone :"
+            [(ngModel)]="partener.phone"
+            pattern="^(?:(?:(?:\+|00)212[\s]?(?:[\s]?\(0\)[\s]?)?)|0){1}(?:5[\s.-]?[2-3]|6[\s.-]?[13-9]){1}[0-9]{1}(?:[\s.-]?\d{2}){3}$"
+            [ngClass]="{ 'is-invalid': formPartener.submitted && phone.invalid }" required>
+            <div *ngIf="formPartener.submitted && phone.invalid" class="invalid-feedback">
+              <div *ngIf="phone.errors.required">champ obligatoire</div>
+          </div>
+          </div>
+        </div>
+
+        <div class="row d-flex justify-content-center">
+            <textarea class="form-texterea" maxlength="50"
+            placeholder="📝 quelque chose a r'ajouter..."
+            name="message"
+            [(ngModel)]="partener.message">
+          </textarea>
+        </div>
+
+        <div class="row mb-4">
+          <input type="text" class="form__captcha" name="captchaGenerated" [(ngModel)]="captchaGenerated" disabled>
+          <button type="button" class="form__captcha-button" (click)="onChangeCaptcha()"><i class="fa fa-refresh"></i></button>      
+        </div>
+        
+        <div class="row">
+          <input type="text" class="form-control" name="captcha"
+          [(ngModel)]="captcha"  placeholder="📟 enter captcha.." 
+          [ngClass]="{ 'is-invalid': formPartener.submitted && phone.invalid }" required>
+        </div>
+
+        <div class="text-center">
+          <button type="submit" class="btn__custom-modal">{{globals.VALIDATE_MSG}}</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

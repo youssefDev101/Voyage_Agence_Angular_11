@@ -1,0 +1,119 @@
+.modal {
+    display: block; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0); /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+  }
+  .modal-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  .modal-container h3 {
+    font-size: 2rem;
+    margin: 0rem 0rem 1rem 0rem;
+    text-align: center;
+  }
+  .modal-container p{
+    text-align: center;
+    letter-spacing: normal;
+    max-width: 350px;
+    font-weight: 100;
+    font-size: 13px;
+    color: var(--gray);
+  }
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 2rem;
+    border: 1px solid #888;
+    width: 60%; /* Could be more or less, depending on screen size */
+  }
+  .close {
+    display: flex;
+    justify-content: flex-end;
+    color: #aaa;
+    font-size: 2rem;
+    font-weight: bold;
+  }
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .form-texterea{
+    overflow: auto;
+    resize: vertical;
+    border: 1px solid #ced4da;
+    border-radius: .7rem;
+    margin: 1rem 0rem;
+    width: 100%;
+    height: 55%;   
+  }
+
+  .form__captcha{
+    width: 90%;
+    height: 40px;
+    font-size: 24px;
+    font-weight: bolder;
+    display: inline-block;
+    background-color: rgb(92 116 128 / 0.16);
+    border: none;
+    color: black;
+    text-align: center;
+    border-radius: 2rem;
+  }
+
+  .form__captcha-button{
+    display: block;
+    width: 10%;
+    border: none;
+    border-radius: 5rem;
+    background: var(--gray-dark);
+    font-size: 14px;
+    color: white;
+  }
+
+  .btn__custom-modal{
+    width: 40%;
+    border: none;
+    border-radius: 2rem;
+    padding: .5rem 3rem;
+    margin: 1rem 0rem;
+    color: white;
+    box-shadow: 0.1875rem 0.375rem 1.5rem 0.3125rem rgb(169 174 177);
+    background: var(--green);
+  }
+
+/* mobile responsive */
+  @media screen and (max-width: 906px) {
+
+    .modal-content {
+      background-color: #fefefe;
+      margin: 15% auto;
+      padding: 2rem;
+      border: 1px solid #888;
+      width: 90%;
+    }
+
+    .btn__custom-modal{
+      width: 100%;
+      border: none;
+      border-radius: 2rem;
+      padding: .5rem 3rem;
+      margin: 1rem 0rem;
+      color: white;
+      box-shadow: 0.1875rem 0.375rem 1.5rem 0.3125rem rgb(169 174 177);
+      background: var(--green);
+      text-align: center;
+    }
+  }

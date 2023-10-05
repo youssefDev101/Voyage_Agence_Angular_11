@@ -1,0 +1,71 @@
+<section class="offre-section">
+
+  <app-custom-alert [color]="Alert.color" [messageText]="Alert.messageText" [messageBtn]="Alert.messageBtn" [status]="Alert.imgStatus"></app-custom-alert>
+
+  <div class="offre-container">
+  <p class="text-center">Rechercher votre prochain voyage</p>
+  <div class="offre-container-form">
+      <div class="offre_content">
+        <p><i class="fa fa-map-marker"></i>&nbsp;choissir une ville :</p>
+        <select class="form-control form-offre" #city name="city" (change)='onSelectedCity(city.value)'>
+          <option value="1">--selectionner une ville--</option>
+          <option *ngFor="let city of cities" value="{{city.id}}">{{city.name}}</option>
+        </select>
+      </div>
+      <div class="offre_content">
+        <p><i class="fa fa-clock-o"></i>&nbsp;choisir une duree :</p>
+        <select class="form-control form-offre" #days name="days" (change)='onSelectedDays(days.value)'>
+          <option value="1">--selectionner une duree--</option>
+          <option *ngFor="let day of timesOfDay" value="{{day.id}}">{{day.name}}</option>
+        </select>
+      </div>
+      <div class="offre_content">
+        <p><i class="fa fa-money"></i>&nbsp;choisir un prix :</p>
+        <select class="form-control form-offre" #price name="price" (change)='onSelectedPrice(price.value)'>
+          <option value="1">--selectionner un prix--</option>
+          <option *ngFor="let price of prices" value="{{price.id}}">{{price.name}}</option>
+        </select>
+      </div>
+      <button class="btn btn-outline-success btn-block btn-custom" (click)="onClickSearchOffre()">rechercher</button>
+  </div>
+
+  <div class="offre-container-desc">
+    <p class="offre-desc"><i class="fa fa-thumb-tack"></i>&nbsp;{{globals.PAGES_OFFRE_DESC}}</p>
+  </div>
+
+  <div class="offre-card_container" *ngIf="offresArray.length;else isEmpty">
+    <div class="offre-card_content" *ngFor="let offre of offresArray; let index = index">
+      <div class="offre-card-heart">
+        <button
+        class="offre-card-heart-btn"
+        [class.offre-card-heart-active-btn]="index == selectedCard"
+        [disabled]="isAddToFav"
+        (click)="onClickAddFavories(offre,index)"><i class="fa fa-heart"></i></button>
+      </div>
+      <img src="{{offre?.img}}">
+      <div class="offre-card">
+        <h1 class="offre-card-title">{{offre?.city?.name}}</h1>
+        <p class="offre-card-subTitle">{{offre?.city?.adresse}}</p>
+        <div class="offre-card-star" >
+          <i class="fa fa-star" *ngFor="let rating of offre.rating"></i>
+        </div>
+        <p class="offre-card-desc mt-2">{{offre?.miniDesc}}</p>
+        <hr>
+        <p class="offre-card-desc">{{offre?.longDesc}}</p>
+        <div class="offre-card-detail">
+        <p class="offre-card-detail-price">{{offre?.price?.value}}</p>
+        <p class="offre-card-detail-info">{{offre?.days?.name}}</p>
+        <p class="offre-card-detail-info">{{offre?.days?.date | date:'MM/dd/yyyy'}}</p>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #isEmpty>
+  <div class="isEmpty_container">
+    <img src="{{globals.PAGES_OFFRE_IMG_ERROR_MSG}}" alt="">
+    <p>{{globals.PAGES_OFFRE_ERROR_MSG}}</p>
+  </div>
+</ng-template>
+</section>

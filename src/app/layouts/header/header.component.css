@@ -1,0 +1,66 @@
+.navbar-bg_green {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background: var(--green-second-gradient);
+}
+.navbar {
+  border-style: none;
+  border-width: 0 0px 0px 0px;
+  box-shadow: 0px 3px 0px 0px #50e88e;
+}
+.img-home {
+  vertical-align: middle;
+  border-style: none;
+  width: 4rem;
+  height: 3rem;
+}
+.icon-size {
+  font-size: 2.3rem;
+  color: var(--green);
+  margin-right: 1rem;
+  cursor: pointer;
+  position: relative;
+}
+.nav-icon-heart{
+  position: absolute;
+  right: 110px;
+  top: 35px;
+  color: var(--green);
+  font-size: 20px;
+}
+.nav-icon-user{
+  position: absolute;
+  right: 40px;
+  top: 50px;
+  color: var(--green);
+  font-size: 15px;
+}
+@media screen and (max-width: 906px) {
+  .navbar_mobile {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .icon-size {
+    cursor: pointer;
+    font-size: 2rem;
+    color: var(--green);
+    margin-right: 1rem;
+    position: relative;
+  }
+  .nav-icon-heart{
+    position: absolute;
+    right: 65px;
+    top: 35px;
+    color: var(--green);
+    font-size: 15px;
+  }
+  .nav-icon-user{
+    position: absolute;
+    right: 20px;
+      top: 50px;
+    color: var(--green);
+    font-size: 15px;
+  }
+}

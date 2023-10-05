@@ -1,0 +1,31 @@
+/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@800&display=swap");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css");
+@import url("https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css");
+/* @import url('https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/lumen/bootstrap.min.css'); */
+
+/* variables */
+:root {
+  --white: #fff;
+  --black: #2b2d2f;
+  --green: #2cc068;
+  --green-gradient: linear-gradient(180deg, #e2f8eb, rgba(204, 235, 231, 0));
+  --green-second-gradient: linear-gradient(135deg, #b2fbd0, rgba(204, 235, 231, 0));
+}
+
+/* reset */
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  text-decoration: none;
+  list-style-type: none;
+}
+
+body {
+  background: var(--green-gradient);
+  font-family: "Nunito", sans-serif;
+}

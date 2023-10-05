@@ -1,0 +1,65 @@
+<section>
+  <div class="login_container">
+    <div class="login_card">
+      <img src="../../../assets/pages/login.svg" class="login_card-icon" />
+      <form
+        class="mt-4"
+        #formLogin="ngForm"
+        name="formLogin"
+        (ngSubmit)="formLogin.form.valid && onSubmitLogin()"
+        style="width: 100%"
+      >
+        <div class="form-group">
+          <label for="email">Email :</label>
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            [(ngModel)]="user.email"
+            placeholder="📧 entrez votre email "
+            name="email"
+            #email="ngModel"
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+            [ngClass]="{ 'is-invalid': formLogin.submitted && email.invalid }"
+            required
+          />
+          <div
+            *ngIf="formLogin.submitted && email.invalid"
+            class="invalid-feedback"
+          >
+            <div *ngIf="email.errors.required">champ obligatoire</div>
+            <div *ngIf="email.errors.pattern">email invalide</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="password">Password :</label>
+          <input
+            type="password"
+            class="form-control"
+            id="password"
+            [(ngModel)]="user.password"
+            placeholder="🔒 entrez votre password :"
+            name="password"
+            #password="ngModel"
+            minlength="8"
+            [ngClass]="{
+              'is-invalid': formLogin.submitted && password.invalid
+            }"
+            required
+          />
+          <div
+            *ngIf="formLogin.submitted && password.invalid"
+            class="invalid-feedback"
+          >
+            <div *ngIf="password.errors.required">champ obligatoire</div>
+            <div *ngIf="password.errors.minlength">password invalide (minimum 8 characters)</div>
+          </div>
+        </div>
+        <div class="text-center">
+          <button type="submit" class="login__btn">Login</button>
+        </div>
+      </form>
+      <div *ngIf="error" class="alert alert-danger mt-3">{{error}}</div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,105 @@
+.offre-container{
+    max-width: 1200px;
+    margin: 12px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.offre-container h1{
+    text-align: center;
+    margin: 1.5rem 0rem 1rem 0rem;
+    font-size: 32px;
+    letter-spacing: 2px;
+    color: var(--green);
+}
+.offre-container h1::before{
+    font-family: FontAwesome;
+    content: "\f004";
+    display: inline-block;
+    padding-right: 12px;
+    vertical-align: middle;
+    color: var(--green);
+}
+
+.offre-container p{
+    text-align: center;
+    max-width: 430px;
+    color: var(--gray);
+    letter-spacing: 1px;
+}
+
+.offre-card-container{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.offre-card{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    background: white;
+    color: black;
+    border-radius: 1rem;
+    box-shadow: 0.1875rem 0.375rem 1rem rgb(92 117 128 / 16%);
+    width: 22rem;
+    height: 13rem;
+    margin-bottom: 1rem;
+}
+.offre-card:hover{
+    transform: translate(-2px,4px);
+    outline: none;
+    box-shadow:7px 7px 0 0 rgba(26,26,36,.15);
+}
+.offre-card img{
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 1rem 1rem 1rem 1rem;
+}
+.offre-card-content{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+    top: 20%;
+}
+.offre-card-content h2{
+    font-size: 1.5rem;
+    color: white;
+}
+.offre-card-content p{
+    font-size: 12px;
+    color: white;
+}
+.offre-card-star{
+    color: lightyellow;
+    margin-top: -1rem;
+}
+/* is empty card list */
+.isEmpty_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.isEmpty_container img{
+    width: 200px;
+    height: 200px;
+}
+.isEmpty_container p{
+    font-size: 18px;
+    font-weight: 100;
+    max-width: 300px;
+    text-align: center;
+    color: var(--gray);
+    letter-spacing: 1px;
+}

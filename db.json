@@ -1,0 +1,18 @@
+{
+  "users": [
+    {
+      "firstName": "test",
+      "lastName": "test",
+      "email": "test@gmail.com",
+      "cin": "bk999896",
+      "phone": "0688884747",
+      "status": "P",
+      "password": "12345678",
+      "entreprise": {
+        "name": "",
+        "size": ""
+      },
+      "id": 1
+    }
+  ]
+}

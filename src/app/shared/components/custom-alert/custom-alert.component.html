@@ -1,0 +1,12 @@
+<div class="alert__modal" *ngIf="isShowAlert" >
+  <div class="alert__modal-content">
+    <dir class="alert__container" class="alert__color-{{color}}">
+      <img *ngIf="status === true" src="../../../../assets/layouts/alert/success-alert.svg" class="alert__img">
+      <img *ngIf="status === false" src="../../../../assets/layouts/alert/warn-alert.svg"  class="alert__img">
+      <p>{{messageText}}</p>
+      <button class="alert__btn" (click)="onCloseAlert()">{{messageBtn}}</button>
+  </dir>
+  </div>
+</div>
+
+
